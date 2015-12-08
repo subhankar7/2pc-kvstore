@@ -1,0 +1,11 @@
+OBJECTIVE
+=========
+
+Efficient Logging in Distributed Storage: Write-ahead logging is
+fundamental in many distributed protocols. In this project, you'll build some
+simple distributed protocols (e.g., 2pc) atop modern infrastructure and
+measure the costs of logging; how effectively do modern file systems (e.g.,
+XFS, ext4), atop SSDs or hard disks, support logging? What are the costs? A
+good project will build a simple prototype and measure its performance
+carefully; a really good project will go deeper here, perhaps building support
+for distributed protocols into the local storage system directly.

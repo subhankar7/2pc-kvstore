@@ -1,0 +1,212 @@
+
+<html>
+<head>
+<title>CS-739: Project Suggestions</title> 
+</head> 
+
+<body text=black bgcolor=white link=#00aacc vlink=#00aacc alink=black>
+
+<center>
+<font color=#00aacc>
+<h1>CS-739: Project Suggestions</h1> 
+</font> 
+</center> 
+
+<center>
+<table>
+<tr>
+<td>
+<p></p> 
+</td> 
+</tr> 
+<tr>
+<td width=450pt>
+
+<p>
+<b>Surveying Modern Hardware Failure:</b> How does modern hardware fail? In
+this project, you'll survey the literature to create a model of how modern
+hardware fails, including memories, SSDs, disks, networks, and other hardware
+parts. You'll first read all relevant literature, and then try to capture in
+simplest possible terms how faults arise in modern systems. End goal would be
+to produce a journal paper that summarizes all previous work in this space.
+</p>
+
+<p><b> A Fault Emulation Platform:</b> The goal of this project would be to
+produce some kind of software that can reproduce hardware failures under live
+systems. For example, build a layer inserted into the QEMU virtualization
+software that emulates faulty memory or disks. Others can then run their
+software atop your emulation and see how their system handles real faults.
+</p>
+
+<p><b> SSD Fault Simulation:</b> We read about how SSDs fail in class, and
+some theories of why the very unusual bathtub shaped failure rates arise. In
+this project, you'll build a simulator of SSDs that includes localized failure
+behavior, and see if you can replicate the type of behavior seen in the SSD
+failure paper. What are important parameters? How does such failure (and the
+remapping needed in the FTL) affect performance? Does the theory of SSD
+failure found in that paper match what you can produce via simulation? </p>
+
+<p><b> Abort Conditions and Failure Handling in 2PC:</b> In this work, you'll
+evaluate two-phase commit in live systems. First, find a system or two that
+use 2pc to perform distributed transations (e.g., PostgreSQL, what
+else?). Then, start to trace through how it works, in particular focusing on
+when aborts arise and in general what failure cases are handled. What
+conditions cause an abort vote from one node? Fault injection could be useful
+here; perhaps you could insert disk failures (write() returns an error) and
+memory-allocation failures (malloc() returns null) on one node to see what
+happens during distributed transaction commit. </p>
+
+<p><b> Faults and Divergence in Replicated State Machines:</b> One hard
+problem in RSMs is ensuring no divergence; even if replicated servers receive
+the same inputs, there is no guarantee they will behave the same, so careful
+programming is required. In this project, you will inject faults into some
+real replicated services and see if you can get the replicas to diverge (to
+make different decisions and thus lead to observably different behavior). What
+happens when a disk write fails? When a memory allocation fails? What if
+memory becomes corrupt? etc. </p>
+
+<p><b> GRPC Study:</b> In this project, you'll perform a detailed experimental
+evaluation of GRPC and all of its features. This will build on the simple
+performance measurements you did in Project 1 and turn into a full-blown
+in-depth study. The end goal here is to produce a modern paper on how RPC
+systems actually work, how they perform, what types of failures they handle,
+etc., thus providing a new reading for every distributed systems class in the
+country. You'll be famous! </p>
+
+<p><b> Snapshot Consistency in Scalable Storage:</b> Some scalable systems
+(such as HDFS) have the ability to create a snapshot, which is useful for
+backup, archival, analytics, and many other scenarios. In this project, you'll
+evaluate one or more such systems, determining how such snapshotting works,
+and whether such software produces a consistent snapshot, in which data is
+preserved in a way that is meaningful to applications above it. What
+guarantees are made about the data and metadata in the snapshot? What happens
+to the snapshot if there are currently failures on-going in the system? (e.g.,
+nodes down, disks unavailable) </p>
+
+<p><b> Efficient Logging in Distributed Storage:</b> Write-ahead logging is
+fundamental in many distributed protocols. In this project, you'll build some
+simple distributed protocols (e.g., 2pc) atop modern infrastructure and
+measure the costs of logging; how effectively do modern file systems (e.g.,
+XFS, ext4), atop SSDs or hard disks, support logging? What are the costs? A
+good project will build a simple prototype and measure its performance
+carefully; a really good project will go deeper here, perhaps building support
+for distributed protocols into the local storage system directly. </p>
+
+<p><b>
+Hyper-scale Simulation:</b> It is incredibly challenging to run and test
+systems at scale. In this project, you'll solve that problem by building a
+simulator that can mimic the behavior of various real distributed systems at
+scale. Start with a real system (e.g., Google File System) and build pieces of
+it in your simulator, making it as detailed as possible. Then, scale up disks,
+machines, clients, network, etc., and see how the system behaves. You likely
+would have to think about how start inducing different types of failures to
+see really interested behaviors (e.g., disk failures lead to background data
+migration, which can have a cost on foreground performance). </p>
+
+<p><b> A Theory of Tail Latency and Predictable Local Storage Systems:</b>
+Tail latency has become a central focus in performance of large-scale
+systems. The question is not what the average response time is, but rather
+what the 99th percentile of requests will see. Clearly, the closer 99th
+percentile behavior is to average, the more predictable the behavior of your
+system is. In this project, you'll start by measuring latencies of local file
+systems (the key building blocks in distributed storage) to understand what
+kind of latency profiles are common. What functionality in the file system can
+lead to different observed tail performance? (think about reading/writing,
+caching with different sized memories, path hierarchy depth, lots of files in
+a directory, and other functionality that could affect performance) If you
+find some interesting problems, you could then take the next step and start to
+build a more predictable local storage system; how can you make it such that
+the local storage system is a highly predictable building block for larger
+scale systems? </p>
+
+<p><b> Kubernetes, Swarms, Containers, Oh My!</b> Containerization is taking
+hold in the datacenter. In this project, you'll evaluate one of the open
+source systems driving this world, for example, the Kubernetes container
+scheduling system. How does Kubernetes work? How does it perform its basic
+tasks? Can you evaluate its performance? What happens when you inject faults
+into the system? How does Kubernetes react to such faults, and how does that
+affect performance? You can do this for other distributed schedulers as well
+(e.g., Docker Swarm, Mesos?) </p>
+
+<p><b> Scaling Containers:</b> Containers promise to greatly increase the
+density of computing: instead of booting multiple OSes, one simply runs
+processes and thus can pack many more services onto a single node. In this
+project, you'll study exactly how scalable Containers are. Can you develop a
+Container scalability benchmark? What impacts scale the most? What happens to
+I/O patterns as the number of containers grows? What aspects of CPU
+scheduling, virtual memory, locking, and file systems needs to change to
+better support dense containerization?</p>
+
+<p><b> Scale-Down File Systems:</b> Scalable file systems tend to built on
+hierarchies of some kind, and thus pay some high costs in order to be able to
+manage all the data that resides within them. In this project, you'll compare
+the costs of storage small amounts of data within various open-source storage
+systems (e.g., HDFS, Ceph, others?) and show exactly what the overheads are
+for managing small amounts of data. The underlying hypothesis here is that
+large-scale system do not scale down very well; the challenge then, for you,
+is to come up with a way to build scalable file systems that scale up as well
+as down, introducing more overhead only when an increased amount of data
+storage is in use. </p>
+
+<p><b> Stressing The Maintenance System:</b> Scalable storage systems have to
+perform various amounts of maintenance to ensure that the data within them
+remains safe. For example, HDFS has to scan data in the background to ensure
+the right number of replicas are available, and then make more copies as need
+be when nodes are down. However, it is challenging to build such maintenance
+robustly; if too many nodes are down, the system will start replicating data
+at too high of a rate (hurting performance) or not quickly enough (hurting
+availability). In this project, you'll take existing systems and build tools
+to stress their background maintenance activities, in order to understand how
+they work and what their limits are. If you have time you can even improve
+existing systems by making them more robust to a range of failure behaviors.
+</p>
+
+<p><b> Distributed WiscKey:</b> We have recently built a new high-performance
+key-value store called WiscKey. In this project, you will see if WiscKey is a
+good building block for distributed storage, by dropping it into various
+distributed storage systems and measuring their performance when using
+WiscKey. How should WiscKey evolve to better serve as a building block for
+large-scale systems? </p>
+
+<p><b> The Science of Distributed Evaluation: </b> Many papers produce results
+on how various distributed systems perform; how reproducible are said results?
+In this project, you'll take on the task of comparing the performance of
+modern key-value storage systems to see if what the papers say matches your
+own reality. We'll provide some papers to start with, and we'll proceed by
+evaluating the evaluations themselves.</p>
+
+<p><b> Isolation via Software-Defined Networking: </b> While sharing storage
+systems between users brings significant savings, it also raises new critical
+challenges, one of which is how to fairly share the system. Recent advances in
+networking technology (i.e., software-defined networking, as manifested in
+openflow) enables fine-grained control of network operations. This control of
+network operations allows the implementation of a holistic approach for
+storage system sharing by isolating network and storage node resources. In
+this project, you will build a system to fairly share a storage system using
+SDN support, all while learning how to write network controllers; we already
+have a basic framework in place to help get you started. </p>
+
+<p><b> The Swift Key-Value Store: </b> The Swift key-value storage system is
+increasingly getting popular in real deployments. But what are the underlining
+protocols for building distributed operations in Swift? Are they reliable? Can
+it tolerate network failures? In this project, you will study the Swift
+protocols through examining its operation, inject faults to examine its
+reliability, and build a framework that can automate fault injection and
+failure detection underneath such a system.</p>
+
+<p><b> Fair Comparison of Paxos and Raft: </b> Paxos and Raft are now dueling
+for supremacy in the world of protocols used to implement replicated state
+machines. In this project, you'll build a framework to compare the two, to
+better understand if there is any real difference in their behavior. How do
+the two perform in common and corner cases? How do the two handle failures?
+By either building a simulation or real code prototypes, you will be able to
+answer these questions for the research community. You can also investigate
+trying new optimizations to each protocol. </p>
+
+
+
+</td> </tr> </table> </center> </body> </html> 
+
+
+
+
