@@ -164,10 +164,11 @@ int GreeterClient::Register (const std::string& conn) {
         }
 }
 
-void GreeterClient::CommitVote(uint64_t txid) {
+void GreeterClient::CommitVote(uint64_t txid, const std::string& conn) {
         CommitVoteRequest request;
         Empty             reply;
         request.set_txid(txid);
+        request.set_conn(conn);
 
         ClientContext context;
 

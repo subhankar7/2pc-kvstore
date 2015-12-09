@@ -58,7 +58,7 @@ message FetchReply {
 }
 
 message PrepareRequest {
-  uint32 txid = 1;
+  uint64 txid = 1;
   string op = 2;
   string path = 3;
   uint32 size = 4;
@@ -66,24 +66,24 @@ message PrepareRequest {
 }
 
 message PrepareReply {
-  uint32 txid = 1;
+  uint64 txid = 1;
   string result = 2;
 }
 
 message CommitRequest {
-    uint32 txid = 1;
+    uint64 txid = 1;
 }
 
 message CommitReply {
-    uint32 txid = 1;
+    uint64 txid = 1;
     string result = 2;
 }
 
 message AbortRequest {
-    uint32 txid = 1;
+    uint64 txid = 1;
 }
 
 message AbortReply {
-    uint32 txid = 1;
+    uint64 txid = 1;
     string result = 2;
 }

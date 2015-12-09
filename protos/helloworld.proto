@@ -91,6 +91,7 @@ message RegisterReply {
 
 message CommitVoteRequest {
     uint64 txid = 1;
+    string conn = 2;
 }
 
 message Empty {

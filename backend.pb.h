@@ -295,11 +295,11 @@ class PrepareRequest : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional uint32 txid = 1;
+  // optional uint64 txid = 1;
   void clear_txid();
   static const int kTxidFieldNumber = 1;
-  ::google::protobuf::uint32 txid() const;
-  void set_txid(::google::protobuf::uint32 value);
+  ::google::protobuf::uint64 txid() const;
+  void set_txid(::google::protobuf::uint64 value);
 
   // optional string op = 2;
   void clear_op();
@@ -345,11 +345,11 @@ class PrepareRequest : public ::google::protobuf::Message {
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
+  ::google::protobuf::uint64 txid_;
   ::google::protobuf::internal::ArenaStringPtr op_;
-  ::google::protobuf::uint32 txid_;
-  ::google::protobuf::uint32 size_;
   ::google::protobuf::internal::ArenaStringPtr path_;
   ::google::protobuf::internal::ArenaStringPtr buf_;
+  ::google::protobuf::uint32 size_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_backend_2eproto();
   friend void protobuf_AssignDesc_backend_2eproto();
@@ -416,11 +416,11 @@ class PrepareReply : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional uint32 txid = 1;
+  // optional uint64 txid = 1;
   void clear_txid();
   static const int kTxidFieldNumber = 1;
-  ::google::protobuf::uint32 txid() const;
-  void set_txid(::google::protobuf::uint32 value);
+  ::google::protobuf::uint64 txid() const;
+  void set_txid(::google::protobuf::uint64 value);
 
   // optional string result = 2;
   void clear_result();
@@ -438,8 +438,8 @@ class PrepareReply : public ::google::protobuf::Message {
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
+  ::google::protobuf::uint64 txid_;
   ::google::protobuf::internal::ArenaStringPtr result_;
-  ::google::protobuf::uint32 txid_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_backend_2eproto();
   friend void protobuf_AssignDesc_backend_2eproto();
@@ -506,18 +506,18 @@ class CommitRequest : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional uint32 txid = 1;
+  // optional uint64 txid = 1;
   void clear_txid();
   static const int kTxidFieldNumber = 1;
-  ::google::protobuf::uint32 txid() const;
-  void set_txid(::google::protobuf::uint32 value);
+  ::google::protobuf::uint64 txid() const;
+  void set_txid(::google::protobuf::uint64 value);
 
   // @@protoc_insertion_point(class_scope:backend.CommitRequest)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
-  ::google::protobuf::uint32 txid_;
+  ::google::protobuf::uint64 txid_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_backend_2eproto();
   friend void protobuf_AssignDesc_backend_2eproto();
@@ -584,11 +584,11 @@ class CommitReply : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional uint32 txid = 1;
+  // optional uint64 txid = 1;
   void clear_txid();
   static const int kTxidFieldNumber = 1;
-  ::google::protobuf::uint32 txid() const;
-  void set_txid(::google::protobuf::uint32 value);
+  ::google::protobuf::uint64 txid() const;
+  void set_txid(::google::protobuf::uint64 value);
 
   // optional string result = 2;
   void clear_result();
@@ -606,8 +606,8 @@ class CommitReply : public ::google::protobuf::Message {
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
+  ::google::protobuf::uint64 txid_;
   ::google::protobuf::internal::ArenaStringPtr result_;
-  ::google::protobuf::uint32 txid_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_backend_2eproto();
   friend void protobuf_AssignDesc_backend_2eproto();
@@ -674,18 +674,18 @@ class AbortRequest : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional uint32 txid = 1;
+  // optional uint64 txid = 1;
   void clear_txid();
   static const int kTxidFieldNumber = 1;
-  ::google::protobuf::uint32 txid() const;
-  void set_txid(::google::protobuf::uint32 value);
+  ::google::protobuf::uint64 txid() const;
+  void set_txid(::google::protobuf::uint64 value);
 
   // @@protoc_insertion_point(class_scope:backend.AbortRequest)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
-  ::google::protobuf::uint32 txid_;
+  ::google::protobuf::uint64 txid_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_backend_2eproto();
   friend void protobuf_AssignDesc_backend_2eproto();
@@ -752,11 +752,11 @@ class AbortReply : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional uint32 txid = 1;
+  // optional uint64 txid = 1;
   void clear_txid();
   static const int kTxidFieldNumber = 1;
-  ::google::protobuf::uint32 txid() const;
-  void set_txid(::google::protobuf::uint32 value);
+  ::google::protobuf::uint64 txid() const;
+  void set_txid(::google::protobuf::uint64 value);
 
   // optional string result = 2;
   void clear_result();
@@ -774,8 +774,8 @@ class AbortReply : public ::google::protobuf::Message {
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
+  ::google::protobuf::uint64 txid_;
   ::google::protobuf::internal::ArenaStringPtr result_;
-  ::google::protobuf::uint32 txid_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_backend_2eproto();
   friend void protobuf_AssignDesc_backend_2eproto();
@@ -957,15 +957,15 @@ inline void FetchReply::set_allocated_buf(::std::string* buf) {
 
 // PrepareRequest
 
-// optional uint32 txid = 1;
+// optional uint64 txid = 1;
 inline void PrepareRequest::clear_txid() {
-  txid_ = 0u;
+  txid_ = GOOGLE_ULONGLONG(0);
 }
-inline ::google::protobuf::uint32 PrepareRequest::txid() const {
+inline ::google::protobuf::uint64 PrepareRequest::txid() const {
   // @@protoc_insertion_point(field_get:backend.PrepareRequest.txid)
   return txid_;
 }
-inline void PrepareRequest::set_txid(::google::protobuf::uint32 value) {
+inline void PrepareRequest::set_txid(::google::protobuf::uint64 value) {
   
   txid_ = value;
   // @@protoc_insertion_point(field_set:backend.PrepareRequest.txid)
@@ -1118,15 +1118,15 @@ inline void PrepareRequest::set_allocated_buf(::std::string* buf) {
 
 // PrepareReply
 
-// optional uint32 txid = 1;
+// optional uint64 txid = 1;
 inline void PrepareReply::clear_txid() {
-  txid_ = 0u;
+  txid_ = GOOGLE_ULONGLONG(0);
 }
-inline ::google::protobuf::uint32 PrepareReply::txid() const {
+inline ::google::protobuf::uint64 PrepareReply::txid() const {
   // @@protoc_insertion_point(field_get:backend.PrepareReply.txid)
   return txid_;
 }
-inline void PrepareReply::set_txid(::google::protobuf::uint32 value) {
+inline void PrepareReply::set_txid(::google::protobuf::uint64 value) {
   
   txid_ = value;
   // @@protoc_insertion_point(field_set:backend.PrepareReply.txid)
@@ -1179,15 +1179,15 @@ inline void PrepareReply::set_allocated_result(::std::string* result) {
 
 // CommitRequest
 
-// optional uint32 txid = 1;
+// optional uint64 txid = 1;
 inline void CommitRequest::clear_txid() {
-  txid_ = 0u;
+  txid_ = GOOGLE_ULONGLONG(0);
 }
-inline ::google::protobuf::uint32 CommitRequest::txid() const {
+inline ::google::protobuf::uint64 CommitRequest::txid() const {
   // @@protoc_insertion_point(field_get:backend.CommitRequest.txid)
   return txid_;
 }
-inline void CommitRequest::set_txid(::google::protobuf::uint32 value) {
+inline void CommitRequest::set_txid(::google::protobuf::uint64 value) {
   
   txid_ = value;
   // @@protoc_insertion_point(field_set:backend.CommitRequest.txid)
@@ -1197,15 +1197,15 @@ inline void CommitRequest::set_txid(::google::protobuf::uint32 value) {
 
 // CommitReply
 
-// optional uint32 txid = 1;
+// optional uint64 txid = 1;
 inline void CommitReply::clear_txid() {
-  txid_ = 0u;
+  txid_ = GOOGLE_ULONGLONG(0);
 }
-inline ::google::protobuf::uint32 CommitReply::txid() const {
+inline ::google::protobuf::uint64 CommitReply::txid() const {
   // @@protoc_insertion_point(field_get:backend.CommitReply.txid)
   return txid_;
 }
-inline void CommitReply::set_txid(::google::protobuf::uint32 value) {
+inline void CommitReply::set_txid(::google::protobuf::uint64 value) {
   
   txid_ = value;
   // @@protoc_insertion_point(field_set:backend.CommitReply.txid)
@@ -1258,15 +1258,15 @@ inline void CommitReply::set_allocated_result(::std::string* result) {
 
 // AbortRequest
 
-// optional uint32 txid = 1;
+// optional uint64 txid = 1;
 inline void AbortRequest::clear_txid() {
-  txid_ = 0u;
+  txid_ = GOOGLE_ULONGLONG(0);
 }
-inline ::google::protobuf::uint32 AbortRequest::txid() const {
+inline ::google::protobuf::uint64 AbortRequest::txid() const {
   // @@protoc_insertion_point(field_get:backend.AbortRequest.txid)
   return txid_;
 }
-inline void AbortRequest::set_txid(::google::protobuf::uint32 value) {
+inline void AbortRequest::set_txid(::google::protobuf::uint64 value) {
   
   txid_ = value;
   // @@protoc_insertion_point(field_set:backend.AbortRequest.txid)
@@ -1276,15 +1276,15 @@ inline void AbortRequest::set_txid(::google::protobuf::uint32 value) {
 
 // AbortReply
 
-// optional uint32 txid = 1;
+// optional uint64 txid = 1;
 inline void AbortReply::clear_txid() {
-  txid_ = 0u;
+  txid_ = GOOGLE_ULONGLONG(0);
 }
-inline ::google::protobuf::uint32 AbortReply::txid() const {
+inline ::google::protobuf::uint64 AbortReply::txid() const {
   // @@protoc_insertion_point(field_get:backend.AbortReply.txid)
   return txid_;
 }
-inline void AbortReply::set_txid(::google::protobuf::uint32 value) {
+inline void AbortReply::set_txid(::google::protobuf::uint64 value) {
   
   txid_ = value;
   // @@protoc_insertion_point(field_set:backend.AbortReply.txid)

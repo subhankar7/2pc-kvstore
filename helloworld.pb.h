@@ -834,12 +834,24 @@ class CommitVoteRequest : public ::google::protobuf::Message {
   ::google::protobuf::uint64 txid() const;
   void set_txid(::google::protobuf::uint64 value);
 
+  // optional string conn = 2;
+  void clear_conn();
+  static const int kConnFieldNumber = 2;
+  const ::std::string& conn() const;
+  void set_conn(const ::std::string& value);
+  void set_conn(const char* value);
+  void set_conn(const char* value, size_t size);
+  ::std::string* mutable_conn();
+  ::std::string* release_conn();
+  void set_allocated_conn(::std::string* conn);
+
   // @@protoc_insertion_point(class_scope:helloworld.CommitVoteRequest)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
   ::google::protobuf::uint64 txid_;
+  ::google::protobuf::internal::ArenaStringPtr conn_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_helloworld_2eproto();
   friend void protobuf_AssignDesc_helloworld_2eproto();
@@ -1471,6 +1483,49 @@ inline void CommitVoteRequest::set_txid(::google::protobuf::uint64 value) {
   
   txid_ = value;
   // @@protoc_insertion_point(field_set:helloworld.CommitVoteRequest.txid)
+}
+
+// optional string conn = 2;
+inline void CommitVoteRequest::clear_conn() {
+  conn_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& CommitVoteRequest::conn() const {
+  // @@protoc_insertion_point(field_get:helloworld.CommitVoteRequest.conn)
+  return conn_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CommitVoteRequest::set_conn(const ::std::string& value) {
+  
+  conn_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:helloworld.CommitVoteRequest.conn)
+}
+inline void CommitVoteRequest::set_conn(const char* value) {
+  
+  conn_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:helloworld.CommitVoteRequest.conn)
+}
+inline void CommitVoteRequest::set_conn(const char* value, size_t size) {
+  
+  conn_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:helloworld.CommitVoteRequest.conn)
+}
+inline ::std::string* CommitVoteRequest::mutable_conn() {
+  
+  // @@protoc_insertion_point(field_mutable:helloworld.CommitVoteRequest.conn)
+  return conn_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* CommitVoteRequest::release_conn() {
+  
+  return conn_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CommitVoteRequest::set_allocated_conn(::std::string* conn) {
+  if (conn != NULL) {
+    
+  } else {
+    
+  }
+  conn_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), conn);
+  // @@protoc_insertion_point(field_set_allocated:helloworld.CommitVoteRequest.conn)
 }
 
 // -------------------------------------------------------------------

@@ -54,7 +54,7 @@ class GreeterClient {
   int Store(const std::string& path, const char *buf, int size);
   int Delete (const std::string& path);
   int Register (const std::string& conn);
-  void CommitVote (uint64_t txid);
+  void CommitVote (uint64_t txid, const std::string& conn);
  private:
   std::unique_ptr<Greeter::Stub> stub_;
 };

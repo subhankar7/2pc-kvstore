@@ -48,6 +48,8 @@
 
 #define BUF_SIZE 4096
 #define TIMEOUT 5
+#define NSEC 1000000000LLU
+
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
@@ -67,7 +69,7 @@ using namespace std;
 
 static GreeterClient *leader;
 int log_fd = 0;
-
+string myconn;
 unsigned long long int fetchcount;
 unsigned long long int storecount;
 unsigned long long int statcount;
@@ -130,10 +132,10 @@ class BackendServiceImpl final : public Backend::Service {
          for ( auto it = tx_db.begin(); it != tx_db.end(); ++it ) {
              Tx_entry *tx_entry = it->second;
              clock_gettime(CLOCK_MONOTONIC, &time);
-             printf("Waited: %llu\n", (time.tv_sec*1000000000+time.tv_nsec - tx_entry->timestamp));
-             if(tx_entry->state_t==PREPARE && (time.tv_sec*1000000000+time.tv_nsec - tx_entry->timestamp) > TIMEOUT*1000000000L) {
-                 leader->CommitVote(tx_entry->txid);
-                 tx_entry->timestamp = time.tv_sec*1000000000 + time.tv_nsec;
+             //printf("Waited: %llu\n", (time.tv_sec*NSEC+time.tv_nsec - tx_entry->timestamp));
+             if(tx_entry->state_t==PREPARE && (time.tv_sec*NSEC+time.tv_nsec - tx_entry->timestamp) > TIMEOUT*NSEC) {
+                 leader->CommitVote(tx_entry->txid, myconn);
+                 tx_entry->timestamp = time.tv_sec*NSEC + time.tv_nsec;
              }
          }
          pthread_rwlock_unlock(&tx_db_lock);
@@ -191,8 +193,8 @@ class BackendServiceImpl final : public Backend::Service {
               // Send CommitVote to coordinator which will trigger a commit.
               struct timespec time;
               clock_gettime(CLOCK_MONOTONIC, &time);
-              leader->CommitVote(tx_entry->txid);
-              tx_entry->timestamp = time.tv_sec*1000000000 + time.tv_nsec;
+              leader->CommitVote(tx_entry->txid, myconn);
+              tx_entry->timestamp = time.tv_sec*NSEC + time.tv_nsec;
           } else {
           }
       }
@@ -306,6 +308,10 @@ class BackendServiceImpl final : public Backend::Service {
       tx_entry->path = request->path();
       tx_entry->op   = request->op();
 
+      struct timespec time;
+      clock_gettime(CLOCK_MONOTONIC, &time);
+      tx_entry->timestamp = time.tv_sec*NSEC + time.tv_nsec;
+      
       pthread_rwlock_wrlock(&tx_db_lock);
       tx_db.insert (std::make_pair((uint64_t)request->txid(), (Tx_entry*)tx_entry));
       pthread_rwlock_unlock(&tx_db_lock);
@@ -485,8 +491,8 @@ int main(int argc, char** argv) {
   char hostname[1024];
   gethostname(hostname, 1023); 
   std::string conn(hostname);
-  
-  leader->Register(conn + ":12349"); 
+  myconn = conn + ":12349";  
+  leader->Register(myconn); 
 
   log_fd = open("store_log", O_CREAT | O_RDWR | O_APPEND, 0666);
   RunServer(recover);

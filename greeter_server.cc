@@ -47,6 +47,8 @@
 
 #include "helloworld.grpc.pb.h"
 
+#define NSEC 1000000000LLU
+
 using namespace std;
 using grpc::Server;
 using grpc::ServerBuilder;
@@ -158,7 +160,7 @@ class GreeterServiceImpl final : public Greeter::Service {
 		  arg->data = (void *)commitReq;
 		  pthread_create(&tid, NULL, CommitRunnable, arg);
 	      }
-          } else if(entry.state_t == PREPARE && !tx_db.count(entry.txid)) {
+/*          } else if(entry.state_t == PREPARE && !tx_db.count(entry.txid)) {
               printf("Recovering txn: %d, Aborting ...\n", entry.txid);
               Tx_entry* tx_entry = new Tx_entry();
               tx_entry->txid = entry.txid;
@@ -178,7 +180,7 @@ class GreeterServiceImpl final : public Greeter::Service {
 		  arg->data = (void *)abortReq;
                   printf("Creating thread ...\n");
 		  pthread_create(&tid, NULL, SendAbortRunnable, arg);
-	      }
+	      } */
           } else {
           }
       }
@@ -245,7 +247,7 @@ class GreeterServiceImpl final : public Greeter::Service {
   uint64_t getTid() {
       struct timespec time;
       clock_gettime(CLOCK_MONOTONIC, &time);
-      return time.tv_sec*1000000000 + time.tv_nsec;
+      return time.tv_sec*NSEC + time.tv_nsec;
   }
 
   int tpcLog(uint64_t txid, state state_t) {
@@ -298,7 +300,7 @@ class GreeterServiceImpl final : public Greeter::Service {
 
       Tx_entry *tx_entry = input->tx;
 
-      if(ack==true) {
+      if(ack==true && tx_entry != NULL) {    // tx_entry will be NULL in Presumed Abort.
           pthread_rwlock_wrlock(&tx_db_lock);
           tx_entry->ack_count++;
           pthread_rwlock_unlock(&tx_db_lock);
@@ -327,8 +329,8 @@ class GreeterServiceImpl final : public Greeter::Service {
 
       Tx_entry* tx_entry = NULL;
 
-      printf("Sending commit for CommitVote.\n");
       pthread_rwlock_wrlock(&tx_db_lock);
+      printf("Sending commit for CommitVote Txn: %llu.\n", request->txid());
       if(tx_db.count(request->txid())) {
           tx_entry = tx_db[request->txid()];
           if(tx_entry->state_t == COMMIT) {
@@ -337,30 +339,37 @@ class GreeterServiceImpl final : public Greeter::Service {
               CommitRequest *commitReq = new CommitRequest();
               commitReq->set_txid(tx_entry->txid);
 
-              for (auto it=reg_db.begin(); it != reg_db.end(); ++it) {
-                  pthread_t tid;
-                  thd_info *arg = new thd_info();
-                  arg->conn = *it;
-                  arg->tx = tx_entry;
-                  arg->data = (void *)commitReq;
-                  pthread_create(&tid, NULL, CommitRunnable, arg);
-              }
+              pthread_t tid;
+              thd_info *arg = new thd_info();
+              arg->conn = request->conn();
+              arg->tx = tx_entry;
+              arg->data = (void *)commitReq;
+              pthread_create(&tid, NULL, CommitRunnable, arg);
           } else if(tx_entry->state_t == ABORT) {
               tx_entry->ack_count = 0;
               // Send Abort to all clients.
               AbortRequest *abortReq = new AbortRequest();
               abortReq->set_txid(tx_entry->txid);
-              for (auto it=reg_db.begin(); it != reg_db.end(); ++it) {
-                  pthread_t tid;
-                  thd_info *arg = new thd_info();
-                  arg->conn = *it;
-                  arg->tx = tx_entry;
-                  arg->data = (void *)abortReq;
-                  printf("Creating thread ...\n");
-                  pthread_create(&tid, NULL, SendAbortRunnable, arg);
-              }
+
+              pthread_t tid;
+              thd_info *arg = new thd_info();
+              arg->conn = request->conn();
+              arg->tx = tx_entry;
+              arg->data = (void *)abortReq;
+              pthread_create(&tid, NULL, SendAbortRunnable, arg);
           }
+      } else {
+          AbortRequest *abortReq = new AbortRequest();
+          abortReq->set_txid(request->txid());
+
+          pthread_t tid;
+          thd_info *arg = new thd_info();
+          arg->conn = request->conn();
+          arg->tx = NULL;
+          arg->data = (void *)abortReq;
+          pthread_create(&tid, NULL, SendAbortRunnable, arg);
       }
+      
       pthread_rwlock_unlock(&tx_db_lock);
       return Status::OK;
   }
@@ -372,7 +381,7 @@ class GreeterServiceImpl final : public Greeter::Service {
 
       vector<pthread_t> tid_v;
 
-      int rc;
+      int rc = 0;
       int i = 0;
       uint64_t txid;
 
@@ -393,7 +402,7 @@ class GreeterServiceImpl final : public Greeter::Service {
       } 
       prepReq->set_path(request->path());
 
-      rc = tpcLog(txid, PREPARE);
+      //rc = tpcLog(txid, PREPARE);
 
       if(rc!=0) {
           reply->set_error(rc);
@@ -443,11 +452,11 @@ class GreeterServiceImpl final : public Greeter::Service {
           return Status::OK;
       }
 
-      rc = tpcLog(txid, COMMIT);   /* TODO: Need to abort when rc is error */
-      tx_entry->state_t = COMMIT;
-
       printf("Sleeping server now...\n");
       sleep(30);
+
+      rc = tpcLog(txid, COMMIT);   /* TODO: Need to abort when rc is error */
+      tx_entry->state_t = COMMIT;
 
       CommitRequest *commitReq = new CommitRequest();
       commitReq->set_txid(txid);
