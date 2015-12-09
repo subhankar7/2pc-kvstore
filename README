@@ -9,3 +9,5 @@ XFS, ext4), atop SSDs or hard disks, support logging? What are the costs? A
 good project will build a simple prototype and measure its performance
 carefully; a really good project will go deeper here, perhaps building support
 for distributed protocols into the local storage system directly.
+
+Check these slides for architecture and protocol design: https://docs.google.com/presentation/d/1qbcmK4jcllCVP2srUq2Ftj3ez1qWdo5EU8x75dA5omw/edit
