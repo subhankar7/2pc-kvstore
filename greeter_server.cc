@@ -247,7 +247,8 @@ class GreeterServiceImpl final : public Greeter::Service {
   uint64_t getTid() {
       struct timespec time;
       clock_gettime(CLOCK_MONOTONIC, &time);
-      return time.tv_sec*NSEC + time.tv_nsec;
+     // return time.tv_sec*NSEC + time.tv_nsec;
+      return 12345678;
   }
 
   int tpcLog(uint64_t txid, state state_t) {
@@ -452,8 +453,8 @@ class GreeterServiceImpl final : public Greeter::Service {
           return Status::OK;
       }
 
-      printf("Sleeping server now...\n");
-      sleep(30);
+      //printf("Sleeping server now...\n");
+      //sleep(30);
 
       rc = tpcLog(txid, COMMIT);   /* TODO: Need to abort when rc is error */
       tx_entry->state_t = COMMIT;

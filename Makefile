@@ -29,7 +29,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-CXX = g++ -g
+CXX = g++ -g -fPIC
 CPPFLAGS += -I/usr/local/include -I/u/s/u/subhankar/private/739/libgrpc/include -I/u/s/u/subhankar/private/739/proto-install/include -pthread 
 CXXFLAGS += -std=c++11 -D_FILE_OFFSET_BITS=64
 LDFLAGS += -L/usr/local/lib -L/u/s/u/subhankar/private/739/libgrpc/lib -L/u/s/u/subhankar/private/739/proto-install/lib -lgrpc++_unsecure -lgrpc -lgpr -lprotobuf -lpthread -ldl -lrt

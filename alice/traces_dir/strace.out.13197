@@ -1,0 +1,111 @@
+04:29:10.723671 execve("../a.out", [...], [/* 34 vars */]) = 0
+04:29:10.724479 brk(0)                  = 0x1915000
+04:29:10.724680 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fcd57335000
+04:29:10.724710 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+04:29:10.724950 open("/s/gcc-4.8.3/amd64_rhel6/lib64/tls/x86_64/libstdc++.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.725329 stat("/s/gcc-4.8.3/amd64_rhel6/lib64/tls/x86_64", 0x7fff76790470) = -1 ENOENT (No such file or directory)
+04:29:10.725385 open("/s/gcc-4.8.3/amd64_rhel6/lib64/tls/libstdc++.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.725741 stat("/s/gcc-4.8.3/amd64_rhel6/lib64/tls", 0x7fff76790470) = -1 ENOENT (No such file or directory)
+04:29:10.725762 open("/s/gcc-4.8.3/amd64_rhel6/lib64/x86_64/libstdc++.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.726126 stat("/s/gcc-4.8.3/amd64_rhel6/lib64/x86_64", 0x7fff76790470) = -1 ENOENT (No such file or directory)
+04:29:10.726164 open("/s/gcc-4.8.3/amd64_rhel6/lib64/libstdc++.so.6", O_RDONLY) = 7
+04:29:10.726526 read(7, ""..., 832)     = 832
+04:29:10.726888 fstat(7, {st_mode=S_IFREG|0755, st_size=6421127, ...}) = 0
+04:29:10.726934 mmap(NULL, 3154944, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0x7fcd57032000
+04:29:10.726967 mprotect(0x7fcd57117000, 2093056, PROT_NONE) = 0
+04:29:10.727000 mmap(0x7fcd57316000, 40960, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0xe4000) = 0x7fcd57316000
+04:29:10.727020 mmap(0x7fcd57320000, 82944, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fcd57320000
+04:29:10.727037 close(7)                = 0
+04:29:10.727056 open("/s/gcc-4.8.3/amd64_rhel6/lib64/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.727444 open("/u/s/u/subhankar/private/739/libunwind/lib/tls/x86_64/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.727805 stat("/u/s/u/subhankar/private/739/libunwind/lib/tls/x86_64", 0x7fff76790440) = -1 ENOENT (No such file or directory)
+04:29:10.727828 open("/u/s/u/subhankar/private/739/libunwind/lib/tls/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.728203 stat("/u/s/u/subhankar/private/739/libunwind/lib/tls", 0x7fff76790440) = -1 ENOENT (No such file or directory)
+04:29:10.728240 open("/u/s/u/subhankar/private/739/libunwind/lib/x86_64/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.728592 stat("/u/s/u/subhankar/private/739/libunwind/lib/x86_64", 0x7fff76790440) = -1 ENOENT (No such file or directory)
+04:29:10.728614 open("/u/s/u/subhankar/private/739/libunwind/lib/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.729001 stat("/u/s/u/subhankar/private/739/libunwind/lib", {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+04:29:10.729052 open("/u/s/u/subhankar/private/838/clang+llvm-3.3-x86_64-fedora18/lib/tls/x86_64/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.729417 stat("/u/s/u/subhankar/private/838/clang+llvm-3.3-x86_64-fedora18/lib/tls/x86_64", 0x7fff76790440) = -1 ENOENT (No such file or directory)
+04:29:10.729440 open("/u/s/u/subhankar/private/838/clang+llvm-3.3-x86_64-fedora18/lib/tls/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.729794 stat("/u/s/u/subhankar/private/838/clang+llvm-3.3-x86_64-fedora18/lib/tls", 0x7fff76790440) = -1 ENOENT (No such file or directory)
+04:29:10.729816 open("/u/s/u/subhankar/private/838/clang+llvm-3.3-x86_64-fedora18/lib/x86_64/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.730181 stat("/u/s/u/subhankar/private/838/clang+llvm-3.3-x86_64-fedora18/lib/x86_64", 0x7fff76790440) = -1 ENOENT (No such file or directory)
+04:29:10.730220 open("/u/s/u/subhankar/private/838/clang+llvm-3.3-x86_64-fedora18/lib/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.730573 stat("/u/s/u/subhankar/private/838/clang+llvm-3.3-x86_64-fedora18/lib", {st_mode=S_IFDIR|0775, st_size=8192, ...}) = 0
+04:29:10.730595 open("tls/x86_64/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.730962 open("tls/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.731322 open("x86_64/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.731669 open("libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.732040 open("/u/s/u/subhankar/private/739/libgrpc/lib/tls/x86_64/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.732405 stat("/u/s/u/subhankar/private/739/libgrpc/lib/tls/x86_64", 0x7fff76790440) = -1 ENOENT (No such file or directory)
+04:29:10.732443 open("/u/s/u/subhankar/private/739/libgrpc/lib/tls/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.732816 stat("/u/s/u/subhankar/private/739/libgrpc/lib/tls", 0x7fff76790440) = -1 ENOENT (No such file or directory)
+04:29:10.732839 open("/u/s/u/subhankar/private/739/libgrpc/lib/x86_64/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.733190 stat("/u/s/u/subhankar/private/739/libgrpc/lib/x86_64", 0x7fff76790440) = -1 ENOENT (No such file or directory)
+04:29:10.733212 open("/u/s/u/subhankar/private/739/libgrpc/lib/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.733563 stat("/u/s/u/subhankar/private/739/libgrpc/lib", {st_mode=S_IFDIR|0755, st_size=2048, ...}) = 0
+04:29:10.733584 open("/u/s/u/subhankar/private/739/proto-install/lib/tls/x86_64/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.733953 stat("/u/s/u/subhankar/private/739/proto-install/lib/tls/x86_64", 0x7fff76790440) = -1 ENOENT (No such file or directory)
+04:29:10.733998 open("/u/s/u/subhankar/private/739/proto-install/lib/tls/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.734374 stat("/u/s/u/subhankar/private/739/proto-install/lib/tls", 0x7fff76790440) = -1 ENOENT (No such file or directory)
+04:29:10.734395 open("/u/s/u/subhankar/private/739/proto-install/lib/x86_64/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.734748 stat("/u/s/u/subhankar/private/739/proto-install/lib/x86_64", 0x7fff76790440) = -1 ENOENT (No such file or directory)
+04:29:10.734770 open("/u/s/u/subhankar/private/739/proto-install/lib/libm.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.735134 stat("/u/s/u/subhankar/private/739/proto-install/lib", {st_mode=S_IFDIR|0775, st_size=2048, ...}) = 0
+04:29:10.735173 open("/etc/ld.so.cache", O_RDONLY) = 7
+04:29:10.735524 fstat(7, {st_mode=S_IFREG|0644, st_size=158585, ...}) = 0
+04:29:10.735539 mmap(NULL, 158585, PROT_READ, MAP_PRIVATE, 7, 0) = 0x7fcd5700b000
+04:29:10.735555 close(7)                = 0
+04:29:10.735578 open("/lib64/libm.so.6", O_RDONLY) = 7
+04:29:10.735946 read(7, ""..., 832)     = 832
+04:29:10.736272 fstat(7, {st_mode=S_IFREG|0755, st_size=599392, ...}) = 0
+04:29:10.736288 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fcd5700a000
+04:29:10.736306 mmap(0x31aa000000, 2633912, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0x31aa000000
+04:29:10.736321 mprotect(0x31aa083000, 2093056, PROT_NONE) = 0
+04:29:10.736336 mmap(0x31aa282000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x82000) = 0x31aa282000
+04:29:10.736355 close(7)                = 0
+04:29:10.736371 open("/s/gcc-4.8.3/amd64_rhel6/lib64/libgcc_s.so.1", O_RDONLY) = 7
+04:29:10.736786 read(7, ""..., 832)     = 832
+04:29:10.737144 fstat(7, {st_mode=S_IFREG|0644, st_size=520692, ...}) = 0
+04:29:10.737160 mmap(NULL, 2184800, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0x7fcd56df4000
+04:29:10.737176 mprotect(0x7fcd56e09000, 2097152, PROT_NONE) = 0
+04:29:10.737191 mmap(0x7fcd57009000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x15000) = 0x7fcd57009000
+04:29:10.737209 close(7)                = 0
+04:29:10.737226 open("/s/gcc-4.8.3/amd64_rhel6/lib64/libc.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.737622 open("/u/s/u/subhankar/private/739/libunwind/lib/libc.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.738005 open("/u/s/u/subhankar/private/838/clang+llvm-3.3-x86_64-fedora18/lib/libc.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.738369 open("tls/x86_64/libc.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.738718 open("tls/libc.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.739077 open("x86_64/libc.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.739441 open("libc.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.739796 open("/u/s/u/subhankar/private/739/libgrpc/lib/libc.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.740160 open("/u/s/u/subhankar/private/739/proto-install/lib/libc.so.6", O_RDONLY) = -1 ENOENT (No such file or directory)
+04:29:10.740527 open("/lib64/libc.so.6", O_RDONLY) = 7
+04:29:10.740875 read(7, ""..., 832)     = 832
+04:29:10.741200 fstat(7, {st_mode=S_IFREG|0755, st_size=1926520, ...}) = 0
+04:29:10.741245 mmap(0x31a9400000, 3750152, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 7, 0) = 0x31a9400000
+04:29:10.741275 mprotect(0x31a958a000, 2097152, PROT_NONE) = 0
+04:29:10.741290 mmap(0x31a978a000, 20480, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 7, 0x18a000) = 0x31a978a000
+04:29:10.741308 mmap(0x31a978f000, 18696, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x31a978f000
+04:29:10.741324 close(7)                = 0
+04:29:10.741345 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fcd56df3000
+04:29:10.741368 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fcd56df1000
+04:29:10.741384 arch_prctl(ARCH_SET_FS, 0x7fcd56df1720) = 0
+04:29:10.741714 mprotect(0x31a978a000, 16384, PROT_READ) = 0
+04:29:10.741743 mprotect(0x31aa282000, 4096, PROT_READ) = 0
+04:29:10.742110 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fcd56df0000
+04:29:10.742139 mprotect(0x7fcd57316000, 32768, PROT_READ) = 0
+04:29:10.742158 mprotect(0x31a921f000, 4096, PROT_READ) = 0
+04:29:10.742172 munmap(0x7fcd5700b000, 158585) = 0
+04:29:10.742219 open("tmp", O_RDWR|O_CREAT, 0666) = 7
+04:29:10.747233 write(7, ""..., 5)      = 5
+04:29:10.747569 close(7)                = 0
+04:29:10.748342 rename("tmp", "file1")  = 0
+04:29:10.839113 fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 1), ...}) = 0
+04:29:10.839251 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fcd57031000
+04:29:10.839349 write(1, ""..., 8)      = 8
+04:29:10.839955 link("file1", "link1")  = 0
+04:29:10.840814 link("file1", "link2")  = 0
+04:29:10.842245 exit_group(0)           = ?
+04:29:10.842583 +++ exited with 0 +++

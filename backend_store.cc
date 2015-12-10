@@ -66,7 +66,7 @@ using backend::AbortReply;
 using backend::Backend;
 
 using namespace std;
-
+Server *serv;
 static GreeterClient *leader;
 int log_fd = 0;
 string myconn;
@@ -345,9 +345,14 @@ class BackendServiceImpl final : public Backend::Service {
           // TODO: Abort
       }
 
+      printf("Prepare logging done.\n");
+
 
       reply->set_txid(request->txid());
       reply->set_result("ok");
+
+      //printf("Sleeping now...\n");
+      //sleep(60);
 
       cout << "Prepare end for tx:" << request->txid() << endl;
       //cout << "Sleeping now ..." << endl;
@@ -409,13 +414,16 @@ class BackendServiceImpl final : public Backend::Service {
 	      if(tx_entry->op=="store") {
 		  sprintf(path, "%llu", request->txid());
 		  rename(path, tx_entry->path.c_str()); /* Need to be idempotent otherwise rollback enabled*/
+                  printf("Renamed while committing\n");
 	      } else if (tx_entry->op=="delete") {
 		  unlink(tx_entry->path.c_str()); /* Need to be idempotent otherwise rollback enabled*/
+                  printf("Deleted while committing\n");
 	      } else {
 		  cout << "Error: unknown op\n" << endl;
 	      }
 	      tx_entry->state_t = COMMIT;
-	      rc = tpcLog(tx_entry);   
+	      rc = tpcLog(tx_entry);
+              printf("Commit logging done.\n");   
 	      // Handle rc ???
 	      pthread_rwlock_unlock(file_lock);
           }
@@ -429,6 +437,8 @@ class BackendServiceImpl final : public Backend::Service {
 
       cout << "Commit end for tx:" << request->txid() << endl;
       cmt--;
+
+      exit(0);
       return Status::OK;
   }
 
@@ -459,6 +469,7 @@ void RunServer(int recover) {
   builder.RegisterService(&service);
   // Finally assemble the server.
   std::unique_ptr<Server> server(builder.BuildAndStart());
+  serv = server.get();
   std::cout << "Server listening on " << server_address << std::endl;
 
   // Wait for the server to shutdown. Note that some other thread must be
@@ -496,6 +507,7 @@ int main(int argc, char** argv) {
 
   log_fd = open("store_log", O_CREAT | O_RDWR | O_APPEND, 0666);
   RunServer(recover);
+  printf("Server shut\n");
   close(log_fd);
   unlink("store_log");
   return 0;
